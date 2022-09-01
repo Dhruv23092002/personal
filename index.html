@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" contents="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Personal Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/cbeae0c0b7.js" crossorigin="anonymous"></script>
+</head>
+ <body>
+<div id="header">
+    <div class="container">
+        <nav>
+           <img src="./Images/logo.png" class="logo">
+            <ul>
+                <li><a href="#header">Home</a></li>
+                <li><a href="#About">About</a></li>
+                <!-- <li><a href="#">Services</a></li> -->
+                <!-- <li><a href="#">Portfolio</a></li> -->
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-text">
+            <p>Software Developer</p>
+            <h1>Hi,I'm <span>Dhruv<span> Singla </h1>
+        </div>
+    </div>
+</div>
+
+<div id="About">
+    <div class="container">
+        <div class="row">
+            <div class="about-col-1">
+                <img src="./Images/background.png" class="logo1">
+            </div>
+            <div class="about-col-2">
+            <h1 class="sub-title">About Me</h1>
+            <p>I am Dhruv Singla from Ludhina Punjab.Currently i am pursuing my graduation from Thapar University Patiala a full time coder.
+                <br>My strength are I am self motivated,hard working and a displicined person.My short term goal is to get a job in a reputed company<br> 
+                and my long term goal is to achieve a good position where I can build my career and help the organization.My hobbies are listening <br> 
+                to music,travelling,binge watching.That's all about me thanks for reading.
+            </p>
+            <div class="tab-titles">
+                <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                <p class="tab-links" onclick="opentab('Education')">Education</p>
+            </div>
+            <div class="tab-contents active-tab" id="skills">
+                <ul>
+                    <li><span>Technical</span><br>C,C++,Python,OOPS,<br>Data Structures And Algorithms</li>
+                    <li><span>Soft</span><br>Team Management,Leadership Skills,Interpersonal Skills<br>Time Management Skills,Communication Skills.</li>
+                    <!-- <li><span>UI?UX</span><br>Designing Web/App interfaces</li> -->
+                </ul>
+            </div>
+            <div class="tab-contents" id="Education">
+                <ul>
+                    <li><span>Jul 2020-Present</span><br>Thapar Institute Of Engineering And Technology,Patiala<br>BE COMPUTER ENGINEERING<br>8.94</li>
+                    <li><span>2020</span><br>Guru Ramdas Academy,Ludhiana<br>XII,CBSE<br>90.6%</li>
+                    <li><span>2018</span><br>Sacred Heart Convent School,Ludhiana<br>X,CBSE<br>91.4%</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div id="services">
+    <div class="container">
+        <h1 class="sub-title">My Services</h1>
+        <div class="services-list">
+            <div>
+                <h2>Web Design</h2>
+            </div>
+        </div>
+    </div> -->
+<!-- </div> -->
+
+<!-- <div id="portfolio">
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My work</h1>
+            <div class="work-list">
+                <div class="work">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contact-left">
+                <h1 class="sub-title">Contact Me</h1>
+                <p><i class="fa-solid fa-paper-plane"></i>dhruvsingla2002@gmail.com</p>
+                <p><i class="fa-solid fa-square-phone"></i> 9780081157</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/dhruv.singla.77/"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/singla2309/"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/dhruv-singla-58756b208/"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <a href="Images/DHRUV_RESUME.pdf" download class="btn btn2">Download CV</a>
+            </div>
+            <div class="contact-rightt">
+                <form name="submit-to-google-sheet">
+                    <input type="text" name="Name" placeholder="Your Name" required>
+                    <input type="email" name="Email" placeholder="Your Email" required>
+                    <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                    <button type="Submit" class="btn btn2">Submit</button>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+</script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycby2cGQpv9TfP_7WifBK0pPzfXrGb36IqfmpbZ4NCMVGaHKwZiyL-UMAhshg8Q_e20Vf/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg=document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML="Message sent successfully"
+            setTimeout(function(){
+                msg.innerHTML=""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+ </body>  
+</html>
